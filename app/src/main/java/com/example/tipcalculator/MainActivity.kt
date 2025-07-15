@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -107,15 +106,15 @@ fun MainContent(modifier : Modifier = Modifier,
     var totalPerPersonState by remember { mutableDoubleStateOf(0.0) }
     Column{
         TopHeader(totalPerPersonState)
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = modifier.height(15.dp))
 
         Surface(
-            modifier = Modifier.padding(2.dp).fillMaxWidth(),
+            modifier = modifier.padding(2.dp).fillMaxWidth(),
             shape = RoundedCornerShape(corner = CornerSize(8.dp)),
             border = BorderStroke(1.dp, color = Color.LightGray)
         ) {
             Column(
-                modifier = Modifier.padding(6.dp),
+                modifier = modifier.padding(6.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
             ) {
@@ -134,13 +133,13 @@ fun MainContent(modifier : Modifier = Modifier,
                     tipAmountState = calculateTotalTip(totalBillState.value.toDouble(), tipPercentage)
                     totalPerPersonState = calculateTotalPerPerson(totalBillState.value.toDouble(), splitState.intValue, tipPercentage)
                     Row(
-                        modifier = Modifier.padding(3.dp).fillMaxWidth(),
+                        modifier = modifier.padding(3.dp).fillMaxWidth(),
                         horizontalArrangement = Arrangement.Start
                     ) {
-                        Text("Split", modifier = Modifier.align(Alignment.CenterVertically))
-                        Spacer(modifier = Modifier.width(120.dp))
+                        Text("Split", modifier = modifier.align(Alignment.CenterVertically))
+                        Spacer(modifier = modifier.width(120.dp))
                         Row(
-                            modifier = Modifier.padding(horizontal = 3.dp),
+                            modifier = modifier.padding(horizontal = 3.dp),
                             horizontalArrangement = Arrangement.End
                         ) {
                             RoundIconButton(
@@ -166,21 +165,21 @@ fun MainContent(modifier : Modifier = Modifier,
                             )
                         }
                     }
-                    Row(modifier = Modifier.padding(horizontal = 3.dp, vertical = 12.dp)) {
-                        Text("Tip", modifier = Modifier.align(Alignment.CenterVertically))
-                        Spacer(modifier = Modifier.width(200.dp))
-                        Text("$%.2f".format(tipAmountState), modifier = Modifier.align(Alignment.CenterVertically))
+                    Row(modifier = modifier.padding(horizontal = 3.dp, vertical = 12.dp)) {
+                        Text("Tip", modifier = modifier.align(Alignment.CenterVertically))
+                        Spacer(modifier = modifier.width(200.dp))
+                        Text("$%.2f".format(tipAmountState), modifier = modifier.align(Alignment.CenterVertically))
                     }
                     Column(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text("$tipPercentage %")
-                        Spacer(modifier = Modifier.height(14.dp))
+                        Spacer(modifier = modifier.height(14.dp))
                         // Slider
                         Slider(
                             value = sliderPositionState, onValueChange = { newValue -> sliderPositionState = newValue },
-                            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+                            modifier = modifier.padding(start = 16.dp, end = 16.dp),
                             //steps = 4,
                             onValueChangeFinished = {})
                     }
